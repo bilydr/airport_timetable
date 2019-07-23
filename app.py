@@ -1,6 +1,6 @@
 # flask app
-from flask import Flask, render_template
-from flask import request
+from flask import Flask, render_template, Markup
+# from flask import request
 import timetable
 
 app = Flask(__name__)
@@ -12,16 +12,18 @@ def index():
 
 @app.route('/departure/<airport>')
 def departure(airport):
-    return timetable.get_time_table(airport, "departure")
+    time_table = Markup(timetable.get_time_table(airport, "departure"))
+    return render_template('lookup.html', time_table=time_table, airport=airport, flight_type="departure")
+
 
 @app.route('/arrival/<airport>')
 def arrival(airport):
-    return timetable.get_time_table(airport, "arrival")
+    time_table = Markup(timetable.get_time_table(airport, "arrival"))
+    return render_template('lookup.html', time_table=time_table, airport=airport, flight_type="arrival")
 
 @app.route('/about')
 def info():
     return render_template('about.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)

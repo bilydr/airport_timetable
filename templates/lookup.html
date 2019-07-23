@@ -1,0 +1,15 @@
+{# lookup result page #}
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <h4>{{airport|upper}} airport - {{flight_type|capitalize}} timetable</h4>
+      {{time_table}} <!-- if not using MarkUp on python side, use filter '|safe' after strings of HTML -->
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
