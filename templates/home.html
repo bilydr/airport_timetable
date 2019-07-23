@@ -9,7 +9,11 @@
       <h4>List of Airports</h4>
       <ul>
         {% for airport in airports %}
-        <li>{{airport|upper}}</li>
+        <li>
+          {{airport|upper}}
+          <a href={{'/departure/{0}'.format(airport)}}>Departure</a>
+          <a href={{'/arrival/{0}'.format(airport)}}>Arrival</a>
+        </li>
         {% endfor %}
       </ul>
     </div>
